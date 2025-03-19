@@ -1,0 +1,289 @@
+<project name="saé 3.01 - 2024" default="dist" basedir=".">
+  <description>
+    Fichier ant de configuration permettant de construire le projet de la saé 3.01 pour l'année 2024-2025.
+  </description>
+  <property environment="env"/>
+  <!-- commande windows : set SAE_ETAPE=5 -->
+  <fail unless="env.SAE_ETAPE" message="La variable d'environnement SAE_ETAPE, n'est pas définie."/>
+  <property name="etape" value="Etape${env.SAE_ETAPE}"/>
+  <!-- commande windows : set SAE_EQUIPE=6c -->
+  <property name="equipe" value="Equipe${env.SAE_EQUIPE}"/>
+  <fail unless="env.SAE_EQUIPE" message="La variable d'environnement SAE_EQUIPE, n'est pas définie."/>
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist" location="dist"/>
+  <property name="res" location="ressources"/>
+  <property name="lib" location="libs"/>
+  <property name="projectNamePTTI" value="PPTI"/>
+  <property name="projectNameIDJR" value="IDJR"/>
+  <property name="projectNameESP" value="ESP"/>
+  <property name="projectNameBOTA" value="BOTA"/>
+  <property name="projectNameBOTB" value="BOTB"/>
+  <property name="projectNameBOTC" value="BOTC"/>
+  <property name="mainClass" value="Launch"/>
+  <property name="javafxBase" value="Base21.jar"/>
+  <property name="version" value="21"/> 
+  <path id="classpath">
+	<pathelement location="${build}"/>
+	<fileset dir=".">
+		<include name="${javafxBase}"/>
+	</fileset>
+  </path>
+
+ <!-- ******************************************** --> 
+ <!-- Gestion globale constuisant les 6 programmes -->
+ <!-- ******************************************** -->
+
+  <target name="clean" description="Netoyage du projet">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+  <target name="init" depends="clean">
+	<fail message="La version de Java n'est pas celle attendue. Vous utilisez la verion ${ant.java.version} alors que le projet doit être compilé en version 17."> 
+	  <condition>
+		<not>
+			<javaversion exactly="${version}"/>
+		</not>
+	  </condition>
+	</fail>
+    <tstamp/>
+    <mkdir dir="${build}"/>
+	<mkdir dir="${dist}"/>
+	<copy includeemptydirs="true" todir="${build}">
+      <fileset dir="${lib}/common"/>
+    </copy>
+  </target>
+
+  <target name="dist" depends="distPPTI, distIDJR, distESP, distBots" description="generation des jar des 6 programmes" />
+
+ <!-- ******************************************** --> 
+ <!-- *************** Gestion PPTI *************** -->
+ <!-- ******************************************** --> 
+ 
+  <target name="initPPTI" depends="init">
+	<copy includeemptydirs="true" todir="${build}">
+	  <fileset dir="${lib}/ppti"/>
+    </copy>
+  </target>
+ 
+  <target name="compilePPTI" depends="initPPTI" description="compilation des sources pour le PPTI">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="${version}" nowarn="on" fork="yes">
+		<exclude name="**/esp/**"/>
+		<exclude name="**/players/**"/>
+		<classpath refid="classpath"/>  
+	</javac>
+  </target>
+
+  <target name="distPPTI" depends="compilePPTI" description="generation du jar du ppti">
+	<jar destfile="${dist}/${projectNamePTTI}_${etape}_${equipe}.jar">
+	  <fileset dir="${build}" casesensitive="yes">
+		<exclude name="**/esp/**"/>
+		<exclude name="**/players/**"/>
+	  </fileset>
+	  <fileset dir="${res}/ppti"/>
+	  <fileset dir="${res}/common"/>
+	  <zipfileset includes="**/*.*" src="${javafxBase}"/>
+	  <manifest>
+        <attribute name="Main-Class" value="ppti.${mainClass}"/>
+        <attribute name="BuildDate" value="${DSTAMP}"/>
+      </manifest>
+	 </jar>
+  </target>
+
+ <!-- ******************************************** --> 
+ <!-- *************** Gestion IDJR *************** -->
+ <!-- ******************************************** -->
+ 
+ <target name="initIDJR" depends="init">
+	<copy includeemptydirs="true" todir="${build}">
+	  <fileset dir="${lib}/idjr"/>
+	  <fileset dir="${lib}/players"/>
+    </copy>
+  </target>
+ 
+  <target name="compileIDJR" depends="initIDJR" description="compilation des sources pour l'IDJR">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="${version}" nowarn="on" fork="yes">
+		<exclude name="**/esp/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/bots/**"/>
+		<classpath refid="classpath"/>  
+	</javac>
+  </target>
+ 
+  <target name="distIDJR" depends="compileIDJR" description="generation du jar de l'idj ">
+	<jar destfile="${dist}/${projectNameIDJR}_${etape}_${equipe}.jar">
+	  <fileset dir="${build}" casesensitive="yes">
+		<exclude name="**/esp/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/bots/**"/>
+	  </fileset>
+	  <fileset dir="${res}/idjr"/>
+	  <fileset dir="${res}/players"/>
+	  <fileset dir="${res}/common"/>
+	  <zipfileset includes="**/*.*" src="${javafxBase}"/>
+	  <manifest>
+        <attribute name="Main-Class" value="players.idjr.${mainClass}"/>
+        <attribute name="BuildDate" value="${DSTAMP}"/>
+      </manifest>
+	 </jar>
+  </target>
+
+ <!-- ******************************************** --> 
+ <!-- *************** Gestion ESP **************** -->
+ <!-- ******************************************** -->
+
+ <target name="initESP" depends="init">
+	<copy includeemptydirs="true" todir="${build}">
+	  <fileset dir="${lib}/esp"/>
+    </copy>
+  </target>
+ 
+  <target name="compileESP" depends="initESP" description="compilation des sources pour l'IDJR">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="${version}" nowarn="on" fork="yes">
+		<exclude name="**/players/**"/>
+		<exclude name="**/ppti/**"/>
+		<classpath refid="classpath"/>  
+	</javac>
+  </target>
+  
+  <target name="distESP" depends="compileESP" description="generation du jar de l'esp ">
+	<jar destfile="${dist}/${projectNameESP}_${etape}_${equipe}.jar">
+	  <fileset dir="${build}" casesensitive="yes">
+		<exclude name="**/players/**"/>
+		<exclude name="**/ppti/**"/>
+	  </fileset>
+	  <fileset dir="${res}/esp"/>
+	  <fileset dir="${res}/common"/>
+	  <zipfileset includes="**/*.*" src="${javafxBase}"/>
+	  <manifest>
+        <attribute name="Main-Class" value="esp.${mainClass}"/>
+        <attribute name="BuildDate" value="${DSTAMP}"/>
+      </manifest>
+	 </jar>
+  </target>
+  
+ <!-- ******************************************** --> 
+ <!-- *************** Gestion BOTs *************** -->
+ <!-- ******************************************** -->
+
+ <target name="distBots" depends="distBOTA, distBOTB, distBOTC" description="generation des jars des 3 BOTS" />
+ 
+ <target name="initBOTA" depends="init">
+	<copy includeemptydirs="true" todir="${build}">
+	  <fileset dir="${lib}/bota"/>
+	  <fileset dir="${lib}/bots"/>
+	  <fileset dir="${lib}/players"/>
+    </copy>
+  </target>
+ 
+  <target name="compileBOTA" depends="initBOTA" description="compilation des sources pour le BOT A">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="${version}" nowarn="on" fork="yes">
+		<exclude name="**/idjr/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/esp/**"/>
+		<exclude name="**/botb/**"/>
+		<exclude name="**/botc/**"/>
+		<classpath refid="classpath"/>  
+	</javac>
+  </target> 
+ 
+  <target name="distBOTA" depends="compileBOTA" description="generation du jar du BOT A">
+	<jar destfile="${dist}/${projectNameBOTA}_${etape}_${equipe}.jar">
+	  <fileset dir="${build}" casesensitive="yes">
+		<exclude name="**/idjr/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/esp/**"/>
+		<exclude name="**/botb/**"/>
+		<exclude name="**/botc/**"/>
+	  </fileset>
+	  <fileset dir="${res}/bots"/>
+	  <fileset dir="${res}/bota"/>
+	  <fileset dir="${res}/common"/>
+	  <fileset dir="${res}/players"/>
+	  <manifest>
+        <attribute name="Main-Class" value="players.bots.bota.${mainClass}"/>
+        <attribute name="BuildDate" value="${DSTAMP}"/>
+      </manifest>
+	 </jar>
+  </target> 
+  
+ <target name="initBOTB" depends="init">
+	<copy includeemptydirs="true" todir="${build}">
+	  <fileset dir="${lib}/botb"/>
+	  <fileset dir="${lib}/bots"/>
+	  <fileset dir="${lib}/players"/>
+    </copy>
+  </target>
+ 
+  <target name="compileBOTB" depends="initBOTB" description="compilation des sources pour le BOT A">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="${version}" nowarn="on" fork="yes">
+		<exclude name="**/idjr/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/esp/**"/>
+		<exclude name="**/bota/**"/>
+		<exclude name="**/botc/**"/>
+		<classpath refid="classpath"/>  
+	</javac>
+  </target>
+
+  <target name="distBOTB" depends="compileBOTB" description="generation du jar du bot B ">
+	<jar destfile="${dist}/${projectNameBOTB}_${etape}_${equipe}.jar">
+	  <fileset dir="${build}" casesensitive="yes">
+		<exclude name="**/idjr/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/esp/**"/>
+		<exclude name="**/bota/**"/>
+		<exclude name="**/botc/**"/>
+	  </fileset>
+	  <fileset dir="${res}/bots"/>
+	  <fileset dir="${res}/botb"/>
+	  <fileset dir="${res}/common"/>
+	  <fileset dir="${res}/players"/>
+	  <manifest>
+        <attribute name="Main-Class" value="players.bots.botb.${mainClass}"/>
+        <attribute name="BuildDate" value="${DSTAMP}"/>
+      </manifest>
+	 </jar>
+  </target> 
+  
+   <target name="initBOTC" depends="init">
+	<copy includeemptydirs="true" todir="${build}">
+	  <fileset dir="${lib}/botc"/>
+	  <fileset dir="${lib}/bots"/>
+	  <fileset dir="${lib}/players"/>
+    </copy>
+  </target>
+ 
+  <target name="compileBOTC" depends="initBOTC" description="compilation des sources pour le BOT A">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="${version}" nowarn="on" fork="yes">
+		<exclude name="**/idjr/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/esp/**"/>
+		<exclude name="**/bota/**"/>
+		<exclude name="**/botb/**"/>
+		<classpath refid="classpath"/>  
+	</javac>
+  </target>
+  
+  <target name="distBOTC" depends="compileBOTC" description="generation du jar du BOT C">
+	<jar destfile="${dist}/${projectNameBOTC}_${etape}_${equipe}.jar">
+	  <fileset dir="${build}" casesensitive="yes">
+		<exclude name="**/idjr/**"/>
+		<exclude name="**/ppti/**"/>
+		<exclude name="**/esp/**"/>
+		<exclude name="**/bota/**"/>
+		<exclude name="**/botb/**"/>
+	  </fileset>
+	  <fileset dir="${res}/bots"/>
+	  <fileset dir="${res}/botc"/>
+	  <fileset dir="${res}/common"/>
+	  <fileset dir="${res}/players"/>
+	  <manifest>
+        <attribute name="Main-Class" value="players.bots.botc.${mainClass}"/>
+        <attribute name="BuildDate" value="${DSTAMP}"/>
+      </manifest>
+	 </jar>
+  </target> 
+ 
+</project>

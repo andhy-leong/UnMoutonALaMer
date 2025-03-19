@@ -1,0 +1,86 @@
+@import "template-theme.css";
+
+/* modification globales, applicable à la template */
+@font-face {
+    font-family: "Chewy";
+    src: url("../fonts/Chewy-Regular.ttf");
+}
+@font-face {
+    font-family: "Itim";
+    src: url("../fonts/Itim-Regular.ttf");
+}
+
+* {
+    -fx-text-fill: #ffffff;
+
+    -fx-font-family: Itim;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+
+    -background-image-color: #2bbc0b;
+
+
+    -container-background-color: #26ca0d;
+    -global-background-color: #000000;
+    -accent-background-color: #38e100;
+    -accent-border-color: #36f321;
+    -global-border-color: transparent;
+    -global-disabled-background-color: #f0f0f0;
+    -global-disabled-border-color: grey;
+    -text-field-color: #e7f9ff;
+    -a-color: #40b11a;
+    -a-bold-color: #47d219;
+    -highlight-color: #2ff321;
+    -accepted-color: -accent-background-color;
+    -highlight-hover-color: #41d219;
+    -highlight-text-color: -fx-text-fill;
+    -game-grid-pane-text-color: -fx-text-fill;
+    -game-grid-pane-border-hover-color: #3df321;
+    -game-grid-pane-selected-color: -accent-background-color;
+    -game-grid-pane-selected-text-color: #424242;
+    -game-grid-pane-border-color: #e0e0e0;
+    -game-grid-pane-highlight-text-color: #424242;
+    -status-accepted-color: green;
+    -status-refused-color: red;
+    -status-pending-color: orange;
+    -placeholder-stroke-color: gray;
+    -hand-background-color: #191b19;
+
+    -selected-button-background-color: #16df00;
+    -selected-button-border-color: #cbffc7;
+
+    -accent-button-background-color: #25d219;
+    -accent-button-border-color: transparent;
+    -accent-button-text-color: #f4ffee;
+
+    -token-background-color: #fff;
+    -token-border-color: #000;
+
+    -global-shadow: dropshadow(gaussian, white, 2, 1, 0, 0);
+
+    /* players colors */
+    -color1: #9b2427;
+    -color2: #efef3f;
+    -color3: #5ff3c8;
+    -color4: #8ce95b;
+    -color5: #d7deed;
+    -color6: #d27b7a;
+    -color7: #d15fb4;
+    -color8: #51945a;
+    -color9: #d58134;
+    -color10: #fafac4;
+}
+
+/* modifications ne pouvant passer par la template */
+/*.mirror {*/
+/*    -fx-background-color: rgba(0, 0, 0, 0.5); !* Noir avec 50% de transparence *!*/
+/*    -fx-background-blend-mode: overlay; !* Mélange l'image et la couleur *!*/
+/*    -fx-background-image: url("../images/sea.png");*/
+/*}*/
+
+.root {
+    -fx-background-image: url("../images/darkSea.jpg");
+
+}

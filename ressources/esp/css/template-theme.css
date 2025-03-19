@@ -1,0 +1,544 @@
+/* -------------- variables -------------- */
+
+
+/* -------------- par Node -------------- */
+
+.root {
+}
+
+.label {
+    -fx-font-size: 20;
+}
+
+.button {
+    -fx-background-color: -global-background-color;
+    -fx-font-size: 25px;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-min-height: 80px;
+    -fx-min-width: 180px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.radio-button {
+    -fx-font-size: 18px;
+    -fx-min-height: 50px;
+    -fx-min-width: 50px;
+}
+
+.check-box {
+    -fx-font-size: 18px;
+    -fx-min-height: 50px;
+    -fx-min-width: 50px;
+}
+
+.slider {
+    -fx-min-height: 50px;
+    -fx-min-width: 150px;
+}
+
+.toggle-button {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 18px;
+    -fx-min-height: 50px;
+    -fx-min-width: 50px;
+}
+
+.text-field {
+    -fx-font-size: 16px;
+    -fx-background-color: -text-field-color;
+    -fx-border-color: -accent-border-color;
+    -fx-border-width: 0 0 1 0;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+}
+
+.separator {
+    -fx-effect:  dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 2),
+    dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, -2);
+}
+
+/* -------------- par Classe -------------- */
+
+.background-region {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* écran de démarrage */
+.starting-screen-button {
+    -fx-font-size: 35px;
+    -fx-min-height: 100px;
+    -fx-min-width: 280px;
+}
+
+.idjr-starting-screen-button {
+    -fx-font-size: 24px;
+    -fx-min-height: 60px;
+    -fx-min-width: 225px;
+}
+
+/* pop-up */
+.popup-base-view-border-pane {
+    -fx-background-color: -global-background-color;
+    -fx-background-radius: 15px;
+}
+
+.search-button {
+    -fx-background-color: -accent-button-background-color;
+    -fx-border-color: -accent-button-border-color;
+    -fx-text-fill: -accent-button-text-color;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20 10 20;
+}
+
+.pop-up-vbox {
+    -fx-background-color: -container-background-color;
+    -fx-border-radius: 0 0 10 0;
+    -fx-background-radius: 0 0 10 0;
+}
+
+.pop-up-hbox {
+    -fx-background-color: -hand-background-color;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 5 10;
+}
+
+.pop-up-hbox > * {
+    -fx-background-color: -hand-background-color;
+}
+
+.popup-base-view-border-pane .theme-button {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -accent-border-color;
+    -fx-min-height: 40px;
+    -fx-min-width: 160px;
+}
+
+.popup-base-view-border-pane .selected-button {
+    -fx-background-color: -selected-button-background-color;
+    -fx-border-color: -selected-button-border-color;
+    -fx-text-fill: -selected-button-border-color;
+    -fx-min-height: 40px;
+    -fx-min-width: 160px;
+}
+
+.pop-up-button {
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-font-size: 16px;
+    -fx-background-color: -global-background-color;
+    -fx-min-height: 40px;
+    -fx-min-width: 160px;
+}
+
+.player-circle-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: -global-background-color;
+    -fx-padding: 5px;
+}
+
+/* pop-up options */
+
+.language-button {
+    -fx-font-size: 25px;
+    -fx-min-height: 140px;
+    -fx-min-width: 110px;
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-padding: 5px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+/* selecteurs */
+.selected-button {
+    -fx-background-color: -selected-button-background-color;
+    -fx-border-color: -selected-button-border-color;
+    -fx-text-fill: -selected-button-border-color;
+}
+
+/* Ecran de paramétragae */
+.player-name-input {
+    -fx-font-size: 16px;
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -accent-border-color;
+}
+
+.player-name-infos-label {
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+
+/* Ecran de paramétrage des bots */
+.bot-button {
+    -fx-border-radius: null;
+    -fx-background-radius: null;
+    -fx-border-color: -accent-border-color;
+}
+
+/* écran de connexion */
+.connexion-box {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.connexion-box .button {
+    -fx-min-height: 47px;
+    -fx-font-size: 16px;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: -accent-button-border-color;
+    -fx-background-color: -accent-button-background-color;
+    -fx-text-fill: -accent-button-text-color;
+}
+
+.connexion-box .label {
+    -fx-font-size: 16px;
+}
+
+.empty-box {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+}
+
+.accepted-box {
+    -fx-background-color: -accepted-color;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.accepted-box .label {
+    -fx-font-size: 16px;
+}
+
+.state-message {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -a-bold-color;
+}
+
+.filter-hbox {
+}
+
+.filter-hbox .separator {
+    -fx-effect: null;
+}
+
+.refresh-button {
+    -fx-background-color: -accent-button-background-color;
+    -fx-border-color: -accent-button-border-color;
+    -fx-text-fill: -accent-button-text-color;
+    -fx-font-size: 16px;
+    -fx-min-height: 40px;
+}
+
+.join-button {
+    -fx-background-color: -accent-button-background-color;
+    -fx-border-color: -accent-button-border-color;
+    -fx-text-fill: -accent-button-text-color;
+    -fx-font-size: 18px;
+    -fx-padding: 15 40 15 40;
+    -fx-background-radius: 5px;
+}
+
+.idjr-scroll-pane > * {
+    -fx-background-color: -global-background-color;
+}
+
+.idjr-scroll-pane-vbox {
+    -fx-background-color: -global-background-color;
+}
+
+.game-grid-pane {
+    -fx-border-color: -accent-border-color;
+    -fx-border-width: 1px;
+    -fx-background-color: -accent-background-color;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.game-grid-pane-selected {
+    -fx-border-color: -game-grid-pane-border-hover-color;
+    -fx-background-color: -game-grid-pane-selected-color;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+}
+
+.game-grid-pane-selected .label {
+    -fx-font-size: 16px; -fx-text-fill: -game-grid-pane-selected-text-color;
+}
+
+.game-grid-pane-highlighted {
+    -fx-border-color: -highlight-color;
+    -fx-background-color: -a-color;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-width: 1px;
+}
+.game-grid-pane-highlighted .label {
+    -fx-font-size: 16px; -fx-text-fill: -game-grid-pane-highlight-text-color;
+}
+.game-grid-pane .label {
+    -fx-font-size: 16px; -fx-text-fill: -game-grid-pane-highlight-text-color;
+}
+
+.game-grid-pane .game-name-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold; -fx-text-fill: -a-bold-color;
+}
+
+.game-enabled {
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-background-color: -global-background-color;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.game-disabled {
+    -fx-border-color: -global-disabled-border-color;
+    -fx-border-width: 1px;
+    -fx-background-color: -global-disabled-background-color;
+}
+
+.status-accepted {
+    -fx-font-size: 16px;
+    -fx-text-fill: -status-accepted-color;
+    -fx-font-weight: bold;
+}
+
+.status-refused {
+    -fx-font-size: 16px;
+    -fx-text-fill: -status-refused-color; -fx-font-weight: bold;
+}
+
+.status-pending {
+    -fx-font-size: 16px;
+    -fx-text-fill: -status-pending-color; -fx-font-weight: bold;
+}
+
+/* écran de positionnement */
+.token-circle {
+    -fx-fill: -token-background-color;
+    -fx-border-color: -token-border-color;
+    -fx-border-width: 1px;
+}
+
+.token .label {
+    -fx-font-size: 16px;
+}
+
+.color-button {
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: -token-border-color;
+}
+
+.player-card {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5 5 0 0;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.color1 {
+    -fx-background-color: -color1;
+}
+
+.color2 {
+    -fx-background-color: -color2;
+}
+
+.color3 {
+    -fx-background-color: -color3;
+}
+
+.color4 {
+    -fx-background-color: -color4;
+}
+
+.color5 {
+    -fx-background-color: -color5;
+}
+
+.color6 {
+    -fx-background-color: -color6;
+}
+
+.color7 {
+    -fx-background-color: -color7;
+}
+
+.color8 {
+    -fx-background-color: -color8;
+}
+
+.color9 {
+    -fx-background-color: -color9;
+}
+
+.color10 {
+    -fx-background-color: -color10;
+}
+
+
+/* écran de jeu */
+.player-grid-pane {
+    -fx-padding: 20px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5 5 0 0;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.hand-stack-pane {
+    -fx-background-color: -hand-background-color;
+}
+
+.sorting-hbox .radio-button {
+    -fx-font-size: 17px;
+}
+
+.buoy-placeholder {
+    -fx-fill: -global-background-color;
+    -fx-stroke: -placeholder-stroke-color;
+    -fx-stroke-width: 1;
+    -fx-arc-height: 10;
+    -fx-arc-width: 10;
+}
+
+.buoy-value-label {
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -global-background-color;
+    -fx-effect: -global-shadow;
+}
+
+.card-label {
+    -fx-font-size: 14px;
+}
+
+/* help pop-up */
+
+.help-text {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+}
+
+.arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 24px;
+}
+
+/* Global */
+.container {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+}
+
+.title {
+    -fx-font-size: 60px;
+}
+
+.title-idjr {
+    -fx-font-size: 36px;
+}
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-border-width: 0;
+    -fx-min-height: 80px;
+    -fx-min-width: 80px;
+}
+
+.confirm-button {
+    -fx-font-size: 25px;
+    -fx-border-color: -global-border-color;
+    -fx-border-width: 1px;
+    -fx-min-height: 80px;
+    -fx-min-width: 180px;
+}
+
+.play-button {
+    -fx-background-color: -accent-button-background-color;
+    -fx-border-color: -accent-button-border-color;
+    -fx-text-fill: -accent-button-text-color;
+}
+
+.quit-button {
+    -fx-background-color: -global-background-color;
+}
+
+.quit-button-idjr {
+    -fx-background-color: -accent-button-background-color;
+    -fx-border-color: -accent-button-border-color;
+    -fx-border-width: 2px;
+    -fx-font-size: 16px;
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+}
+
+.corner-button {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.menu-button {
+    -fx-background-color: -accent-button-background-color;
+    -fx-border-color: -accent-button-border-color;
+    -fx-text-fill: -accent-button-text-color;
+    -fx-border-width: 2px;
+    -fx-font-size: 16px;
+    -fx-min-height: 40px;
+    -fx-min-width: 160px;
+}
+
+.home-button {
+    -fx-background-color: -global-background-color;
+    -fx-border-color: -global-border-color;
+    -fx-font-size: 18px;
+    -fx-min-height: 50px;
+    -fx-alignment: center;
+}
+
+.player-name-label {
+    -fx-font-size: 20px;
+}
+
+.toggle-switch-background-disabled {
+    -fx-fill: -global-disabled-background-color;
+}
+
+.toggle-switch-background-enabled {
+    -fx-fill: -highlight-color;
+}
+
+.toggle-switch-trigger {
+    -fx-fill: white;
+}
+
+.mirror-vbox {
+    -fx-background-color: -container-background-color;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0.5, 0, 2);}
